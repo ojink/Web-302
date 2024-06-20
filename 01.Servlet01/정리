@@ -1,0 +1,14 @@
+Http 방식의 사용자 요청방식:  GET, POST 방식
+
+클라이언트 프로그램에서 
+get방식으로 요청하면 서블릿에서는  doGet() 메소드가 호출되고 
+post방식으로 요청하면 doPost() 메소드가 호출된다.
+get방식 : url에 전달되는 데이터가 노출됨
+post방식 : url에 전달되는 데이터가 노출되지 않음
+
+@: annotation
+웹브라우저 주소창에 요청할 url은 @WebServlet 에 지정한 요청
+ip주소:포트/contextpath/servletpath
+ 
+
+

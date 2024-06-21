@@ -26,6 +26,7 @@ public class HobbyServlet extends HttpServlet {
 			}
 		}
 		
+		//응답페이지의 한글이 깨지지 않도록 지정
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.append("<html>")
@@ -36,11 +37,17 @@ public class HobbyServlet extends HttpServlet {
 			.append("</ul>")
 			.append("<hr>")
 			
-			.append("<h2>선택결과</h2>")
-			
-			.append("</body>")
-			.append("</html>")
-		;
+			.append("<h2>선택결과</h2>");
+		out.printf("<div>성별: %s</div>", gender);
+		out.print("<div>취미: ");
+		if( hobby!=null) {
+			for(String h : hobby ) {
+				out.print(h + "&nbsp;&nbsp;&nbsp;" );
+			}
+		}
+		out.print("</div>");
+		out.print("</body>");
+		out.print("</html>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

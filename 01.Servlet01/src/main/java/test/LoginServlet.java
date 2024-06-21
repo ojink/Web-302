@@ -15,6 +15,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		
 		System.out.println("로그인요청");
 		//비지니스로직 처리
 		//클라이언트의 요청에 의해 전송된 파라미터는 request 에 있다
@@ -34,6 +35,11 @@ public class LoginServlet extends HttpServlet {
 		out.print("<li><a href='loginForm.html'>로그인화면</a></li>");
 		out.print("</ul>");		
 		out.print("<hr>");
+		
+		out.printf("<div>Request: %s</div>", request.getAttribute("request"));
+		out.printf("<div>Session: %s</div>", request.getSession().getAttribute("session"));
+		out.printf("<div>Application: %s</div>", getServletContext().getAttribute("app"));
+		
 		out.print("<h2>로그인정보</h2>");
 		out.printf("<div>아이디: %s</div>", id);
 		out.printf("<div>비밀번호: %s</div>", pw);

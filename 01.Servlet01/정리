@@ -12,3 +12,22 @@ ip주소:포트/contextpath/servletpath
  
 
 
+요청파라미터의 한글값이 깨지지 않도록 하려면
+request.setCharacterEncoding("utf-8");
+
+매 파라미터값을 꺼내기 전에 지정해야만 하니
+매번 지정할 필요없이 필터 클래스 거쳐 응답하도록 처리
+
+
+JSP/Servlet 에는 객체의 유효범위가 있다 - scope
+application : 웹서버가 서비스를 제공하고 있는 동안 유효 
+session : session 이 유지되는 동안 유효
+request : 요청된 페이지, 응답하는 페이지 유효
+page : jsp 에서만 사용가능
+
+
+
+
+
+
+ 

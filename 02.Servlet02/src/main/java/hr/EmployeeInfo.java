@@ -2,7 +2,6 @@ package hr;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,47 +12,42 @@ import javax.servlet.http.HttpServletResponse;
 import model.EmployeeDTO;
 import model.HrDAO;
 
-@WebServlet("/employee/employeeList")
-public class EmployeeList extends HttpServlet {
+@WebServlet("/employee/employeeInfo")
+public class EmployeeInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//DB에서 사원목록을 조회해오기-비지니스로직
+		//String --> int
+		int employee_id = Integer.parseInt(request.getParameter("id"));
+		
+		//선택한 사원의 정보를 DB에서 조회해오기
 		HrDAO dao = new HrDAO();
-		ArrayList<EmployeeDTO> list = dao.employeeList();
+		EmployeeDTO dto = dao.employeeInfo(employee_id);
 		
-		
-		//프리젠테이션로직
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
 		out.print("<html>");
 		out.print("<body>");
 		out.print("<div><a href='../'>홈으로</a></div>");
-		
-		out.print("<div><a href='index.html'>사원관리</a></div>");
+		out.print("<div><a href='employeeList'>사원목록</a></div>");
 		out.print("<hr>");
-		out.print("<h2>사원목록</h2>");
 		
+		out.print("<h2>사원정보</h2>");
 		out.print("<table border='1'>");
 		out.print("<colgroup>");
-		out.print("<col width='100px'>");
 		out.print("<col width='200px'>");
-		out.print("<col width='250px'>");
-		out.print("<col width='250px'>");
-		out.print("<col width='150px'>");
+		out.print("<col width='500px'>");
 		out.print("</colgroup>");
-		out.print("<tr><th>사번</th><th>성명</th><th>부서</th><th>업무</th><th>입사일자</th></tr>");
-		
-		for( EmployeeDTO dto : list ) {
-		out.printf("<tr><td>%s</td><td><a href='employeeInfo?id=%s'>%s</a></td><td>%s</td><td>%s</td><td>%s</td></tr>"
-				, dto.getEmployee_id(), dto.getEmployee_id(), dto.getName(), dto.getDepartment_id()
-				, dto.getJob_id(), dto.getHire_date() );
-		}
-		
+		out.printf("<tr><th>사번</th><td>%s</td></tr>", dto.getEmployee_id() );
+		out.printf("<tr><th>사원명</th><td>%s</td></tr>", dto.getName() );
+		out.printf("<tr><th>전화번호</th><td>%s</td></tr>", dto.getPhone_number() );
+		out.printf("<tr><th>이메일</th><td>%s</td></tr>", dto.getEmail() );
+		out.printf("<tr><th>입사일자</th><td>%s</td></tr>", dto.getHire_date() );
+		out.printf("<tr><th>급여</th><td>%s</td></tr>", dto.getSalary() );
+		out.printf("<tr><th>부서</th><td>%s</td></tr>", dto.getDepartment_name() );
+		out.printf("<tr><th>업무</th><td>%s</td></tr>", dto.getJob_title() );
 		out.print("</table>");
-		
 		
 		out.print("</body>");
 		out.print("</html>");
@@ -62,4 +56,5 @@ public class EmployeeList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+
 }

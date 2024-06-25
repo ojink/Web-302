@@ -1,0 +1,3 @@
+화면연결방식
+forward: 요청url 이 그대로 유지됨
+redirect: redirect한 url로 브라우저 url이 바뀜

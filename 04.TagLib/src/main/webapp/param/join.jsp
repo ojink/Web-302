@@ -11,8 +11,7 @@
 <hr>
 <h2>회원가입</h2>
 
-<!-- <form method="post" action="info.jsp"> -->
-<form method="post" action="bean.jsp">
+<form method="post" action="data.jsp">
 <table border='1'>
 <tr><th>이름</th>
 	<td><input type="text" name="name"></td>
@@ -35,7 +34,6 @@
 		</label>
 	</td>
 </tr>
-<!--  
 <tr><th>취미</th>
 	<td><label><input type="checkbox" name="hobby" value="수영">수영
 		</label>
@@ -45,7 +43,6 @@
 		</label>
 	</td>
 </tr>
--->
 </table>
 <button>가입하기</button>
 </form>

@@ -22,24 +22,52 @@ tomcat.apache.org
 함수 라이브러리 : http://java.sun.com/jsp/jstl/functions prefix:fn
 포맷 라이브러리 : http://java.sun.com/jsp/jstl/fmt       prefix:fmt
  
+함수 라이브러리 - 문자열관련 함수
+
+포맷 라이브러리 - 날짜, 숫자 
+날짜: <fmt:formatDate value="날짜"></fmt:formatDate>
+숫자: <fmt:formatNumber value="숫자값"> <fmt:formatNumber>
 코어 라이브러리 
+
 - 변수선언
-<c:set var="변수명" value="값" />
+	<c:set var="변수명" value="값" />
+	
 - 변수삭제
-<c:remove var="변수명"/>
+	<c:remove var="변수명"/>
+	
 - 조건문: if, choose
-<c:if test=""> - else if, else 없음
-</c:if>
-<c:choose>
-	<c:when test="">
-	</c:when>
-	<c:when test="">
-	</c:when>
-	<c:when test="">
-	</c:when>
-	<c:otherwise>
-	</c:otherwise>
-</c:choose>
+	<c:if test=""> - else if, else 없음
+	</c:if>
+	<c:choose>
+		<c:when test="">
+		</c:when>
+		<c:when test="">
+		</c:when>
+		<c:when test="">
+		</c:when>
+		<c:otherwise>
+		</c:otherwise>
+	</c:choose>
+	
+- 반복문: step 생략가능(default 1)
+	<c:forEach var="no" begin="1" end="10" step="1">
+	</c:forEach> 
+	
+	<c:forEach items="list" var="name" varStatus="status">
+	</c:forEach>
+	
+	상태변수로 index, first, last 속성들 확인 가능
+	
+	int sum = 0;
+	for(int no=1; no<=10; no++){
+		sum += no;
+	}
+	
+	for(String name : list){
+		list.get(0)
+	}
+	
+- 페이지이동 링크걸기 <c:url value="이동할url" />
 
 
 
@@ -51,6 +79,7 @@ tomcat.apache.org
 
 
 
+ 
  
  
  

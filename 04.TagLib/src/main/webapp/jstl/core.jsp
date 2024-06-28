@@ -8,7 +8,40 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div><a href="../">홈으로</a></div>
+<jsp:include page="/include/header.jsp" />
+
+<h2>페이지 URL연결</h2>
+<div><a target="_blank" href="<c:url value='http://www.naver.com'/>"> 네이버 </a></div>
+
+
+<hr>
+<h2>반복문 : 향상된 forEach</h2>
+<div>전화번호</div>
+<c:forEach items="${phones }" var="phone">
+	<div>${phone.key} : ${phone.value}</div>
+</c:forEach>
+
+
+<h2>반복문 : 향상된 forEach</h2>
+<div>과목명</div>
+<c:forEach items="${subjects }" var="subject" varStatus="status">
+	<div>
+		<c:if test="${status.first}">처음</c:if>
+		${status.last ? "끝" : ""}
+		${status.index+1} :  ${subject }
+		<c:if test="${status.last}">끝</c:if>
+	</div>
+</c:forEach> 
+
+
+<h2>반복문 : 일반 forEach</h2>
+<div>1~10까지 합</div>
+<c:forEach var="no" begin="1" end="10">
+	<c:set var="sum" value="${sum + no}"/>
+	<span>${no}</span>
+</c:forEach>
+<span> = ${sum}</span>
+
 <hr>
 <h2>조건문: choose</h2>
 <c:set var="score" value="68" />

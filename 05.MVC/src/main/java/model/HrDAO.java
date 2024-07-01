@@ -15,6 +15,97 @@ public class HrDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
+	//신규사원정보 저장
+	public void insertEmployee(EmployeeDTO dto) {
+		connect();
+		
+		String sql ="insert into employees"
+		+ "(employee_id, last_name, first_name, email, job_id, hire_date) "
+		+ "values ( employees_seq.nextval, ?, ?, ?, ?, ? )";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getLast_name());
+			ps.setString(2, dto.getFirst_name());
+			ps.setString(3, dto.getEmail());
+			ps.setString(4, dto.getJob_id());
+			ps.setString(5, dto.getHire_date());
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			disconnect();
+		}
+		
+	}
+	
+	//사원정보 변경저장
+	public void updateEmployee(EmployeeDTO dto) {
+		connect();
+		
+		String sql 
+		= "update employees "
+		+ "set last_name = ?, first_name = ? "
+		+ "where employee_id = ? ";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getLast_name());
+			ps.setString(2, dto.getFirst_name());
+			ps.setInt(3, dto.getEmployee_id());
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			disconnect();
+		}
+		
+	}
+	
+	//사원정보조회
+	public EmployeeDTO getOneEmployee(int employee_id) {
+		connect();
+		
+		EmployeeDTO dto = null;
+		String sql 
+		= "select * from employees where employee_id = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, employee_id);
+			rs = ps.executeQuery();
+			if( rs.next() ) {
+				dto = new EmployeeDTO();
+				dto.setEmployee_id( rs.getInt("employee_id"));
+				dto.setFirst_name( rs.getString("first_name"));
+				dto.setLast_name( rs.getString("last_name") );
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally{
+			disconnect();
+		}
+		return dto;
+	}
+	
+	//사원정보삭제
+	public int deleteEmployee(int employee_id) {
+		connect();
+		
+		int dml = 0;
+		String sql = "delete from employees where employee_id = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, employee_id);
+			//ps.executeQuery();   //select 쿼리실행
+			dml = ps.executeUpdate();  //insert,update,delete 쿼리실행
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			disconnect();
+		}
+		return dml;
+	}
 	
 	//사원목록조회
 	public ArrayList<EmployeeDTO> listOfEmployee() {
@@ -35,6 +126,7 @@ public class HrDAO {
 			}
 			
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 		} finally {
 			disconnect();
 		}

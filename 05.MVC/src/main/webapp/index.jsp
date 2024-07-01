@@ -9,7 +9,7 @@
 <body>
 <h2>홈</h2>
 <div><a href="select.do">조회하기</a></div>
-<div><a href="insert.do">저장하기</a></div>
+<div><a href="register.do">저장하기</a></div>
 <div><a href="update.do">변경하기</a></div>
 <div><a href="delete.do">삭제하기</a></div>
 

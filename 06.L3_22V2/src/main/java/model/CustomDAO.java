@@ -15,6 +15,24 @@ public class CustomDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	
+	//선택한 회원정보 삭제
+	public void deleteCustom( String p_id ) {
+		connect();
+		
+		String sql = "delete from custom_01 where p_id = ? ";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, p_id);
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			
+		} finally {
+			disconn();
+		}
+	}
+	
 	//선택한 회원정보조회
 	public CustomDTO getOneCustom(String id) {
 		connect();
@@ -41,6 +59,56 @@ public class CustomDAO {
 		return dto;
 	}
 	
+	//회원정보 변경저장
+	public void updateCustom(CustomDTO dto) {
+		connect();
+		
+		String sql 
+		= "update custom_01 "
+		+ "set c_email = ?, c_name = ?, c_tel = ?, p_pw = ? "
+		+ "where p_id = ? ";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getC_email());
+			ps.setString(2, dto.getC_name());
+			ps.setString(3, dto.getC_tel());
+			ps.setString(4, dto.getP_pw());
+			ps.setString(5, dto.getP_id());
+			//ps.executeQuery(); //select실행
+			ps.executeUpdate(); //insert/update/delete실행
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			disconn();
+		}
+	}
+	
+	//신규회원저장
+	public void registerCustom(CustomDTO dto) {
+		connect();
+		
+		String sql 
+		= "insert into custom_01 "
+		+ "( p_id, p_pw, c_name, c_email, c_tel ) "
+		+ "values (?, ?, ?, ?, ?)";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getP_id());
+			ps.setString(2, dto.getP_pw());
+			ps.setString(3, dto.getC_name());
+			ps.setString(4, dto.getC_email());
+			ps.setString(5, dto.getC_tel());
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+		} finally {
+			disconn();
+		}
+		
+	}
+	
+	
 	//회원목록조회
 	public ArrayList<CustomDTO> getListOfCustom() {
 		connect();
@@ -59,6 +127,7 @@ public class CustomDAO {
 				list.add( dto );
 			}
 		} catch (SQLException e) {
+			
 		} finally {
 			disconn();
 		}

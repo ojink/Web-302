@@ -11,6 +11,8 @@
 <jsp:include page="/include/header.jsp" />
 
 <h2>회원목록</h2>
+<button onclick="location='register.l3'">신규회원등록</button>
+
 <table border="1">
 <colgroup>
 	<col width="200px">

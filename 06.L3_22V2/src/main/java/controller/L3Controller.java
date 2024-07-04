@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.Command;
+import custom_01.CustomDelete;
 import custom_01.CustomInfo;
+import custom_01.CustomInsert;
 import custom_01.CustomList;
+import custom_01.CustomUpdate;
 
 @WebServlet("*.l3")
 public class L3Controller extends HttpServlet {
@@ -21,9 +24,25 @@ public class L3Controller extends HttpServlet {
 		String uri = request.getServletPath();
 		String view = null;
 		Command custom = null;
-		
-		//회원목록 조회 요청
-		if( uri.equals("/list.l3") ) {
+		boolean redirect = false;
+
+		//신규회원 등록 처리 요청
+		if( uri.equals("/insert.l3") ) {
+			//비니지스 로직
+			custom = new CustomInsert();
+			custom.exec(request, response);
+			
+			//응답화면
+			redirect = true;
+			view = "list.l3";
+		}
+		//신규회원등록 화면 요청
+		else if( uri.equals("/register.l3") ) {
+			//응답화면
+			view = "custom/register.jsp";
+		}
+		//회원목록 화면 요청
+		else if( uri.equals("/list.l3") ) {
 			//비지니스로직
 			custom = new CustomList();
 			custom.exec(request, response);
@@ -31,7 +50,7 @@ public class L3Controller extends HttpServlet {
 			//응답화면
 			view = "custom/list.jsp";
 		}
-		//회원정보 조회 요청
+		//회원정보 화면 요청
 		else if( uri.equals("/info.l3") ) {
 			//비지니스로직
 			custom = new CustomInfo();
@@ -40,8 +59,41 @@ public class L3Controller extends HttpServlet {
 			//응답화면
 			view = "custom/info.jsp";
 		}
+		//회원정보 수정화면 요청
+		else if( uri.equals("/modify.l3")) {
+			//비지니스로직
+			custom = new CustomInfo();
+			custom.exec(request, response);
+			
+			//응답화면
+			view = "custom/modify.jsp";
+		}
+		//회원정보 변경저장 처리 요청
+		else if( uri.equals("/update.l3")) {
+			//비지니스로직
+			custom = new CustomUpdate();
+			custom.exec(request, response);
+			
+			//응답화면
+			view = "info.l3?id=" + request.getParameter("id");
+			redirect = true;
+		}
+		//회원정보 삭제 처리 요청
+		else if( uri.equals("/delete.l3") ) {
+			//비지니스로직
+			custom = new CustomDelete();
+			custom.exec(request, response);
+			
+			//응답화면
+			view = "list.l3";
+			redirect = true;
+		}
 		
-		request.getRequestDispatcher(view).forward(request, response);
+		
+		if( redirect )
+			response.sendRedirect(view);
+		else
+			request.getRequestDispatcher(view).forward(request, response);
 		
 	}
 

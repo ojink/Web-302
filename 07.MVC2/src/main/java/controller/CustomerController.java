@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import customer.DeleteCommand;
 import customer.InfoCommand;
+import customer.InsertCommand;
 import customer.ListCommand;
 import customer.UpdateCommand;
 
@@ -60,6 +61,21 @@ public class CustomerController extends HttpServlet {
 		else if( uri.equals("/delete.do")) {
 			//비지니스로직
 			new DeleteCommand().exec(request, response);
+			
+			//응답화면
+			view = "list.do";
+			redirect = true;
+		}
+		//신규고객등록 화면 요청
+		else if( uri.equals("/register.do") ) {
+			
+			//응답화면
+			view = "customer/register.jsp";
+		}
+		//신규고객 등록처리 요청
+		else if( uri.equals("/insert.do") ) {
+			//비지니스로직
+			new InsertCommand().exec(request, response);
 			
 			//응답화면
 			view = "list.do";

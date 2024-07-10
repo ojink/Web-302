@@ -9,6 +9,10 @@
 </head>
 <body>
 <h3>고객목록</h3>
+<a href="<c:url value='/'/>">홈으로</a>
+
+<a href="register.do">신규고객등록</a>
+
 <table border="1">
 <colgroup>
 	<col width="150px">

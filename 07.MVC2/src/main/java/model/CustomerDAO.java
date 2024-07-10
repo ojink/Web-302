@@ -17,7 +17,23 @@ public class CustomerDAO {
 	
 	//CRUD: Create, Read, Update, Delete
 	//신규고객 등록
-	public void registerCustomer(CustomerDTO dto) {
+	public int registerCustomer(CustomerDTO dto) {
+		conn();
+		int dml = 0;
+		String sql = "insert into customer(name, gender, email, phone) "
+					+ "values (?, ?, ?, ?)";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getName());
+			ps.setString(2, dto.getGender());
+			ps.setString(3, dto.getEmail());
+			ps.setString(4, dto.getPhone());
+			dml = ps.executeUpdate(); //sqldeveloper의 ctrl+enter
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return dml;
 	}
 	
 	//고객목록 조회
@@ -117,6 +133,7 @@ public class CustomerDAO {
 			disconn();
 		}
 	}
+	
 	
 	//자원회수-DB연결개체 반납
 	private void disconn() {

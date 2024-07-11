@@ -1,0 +1,13 @@
+웹브라우저에서 사용자 의 행위
+-> 주소 바뀜 : 주소 처리 요청
+요청된 처리: Controller(서블릿)
+
+Controller : Command 의 실행메소드 호출 -> 화면연결
+Command 의 실행메소드: DB연결 조회/저장.. 처리 
+                                  DAO 해당 메소드 호출
+DAO의 메소드 :  DB연결해서 쿼리실행: SqlSession 의 메소드호출
+SqlSession 의 메소드 : 쿼리를 선언한 매퍼의 태그
+매퍼 파일: namespace -> 태그 :select, update, delete, insert - id 지정
+SqlSession 의 메소드시 매퍼의 namespace.쿼리태그id
+
+  

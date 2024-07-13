@@ -11,6 +11,8 @@
 <jsp:include page="/include/header.jsp" />
 
 <h3>고객목록</h3>
+<a href="register.cu">신규등록</a>
+
 <table border="1">
 <colgroup>
 	<col width="200px">

@@ -10,15 +10,14 @@ import mybatis.MybatisFactory;
 public class CustomerDAO {
 	private SqlSession sql; //쿼리실행기능을 가진 클래스
 	public CustomerDAO() {
-		sql = MybatisFactory.getInstance();
+		sql = MybatisFactory.getHrInstance();
 	}
 	
 	//CRUD: Create, Read, Update, Delete
 	
 	//신규고객등록
 	public int registerCustomer(CustomerDTO dto) {
-		
-		return 0;
+		return sql.insert("customer.registerCustomer", dto);
 	}
 	
 	//고객정보 변경저장
@@ -28,7 +27,7 @@ public class CustomerDAO {
 	
 	//고객정보 삭제
 	public int deleteCustomer(int id) {
-		return 0;
+		return sql.delete("customer.deleteCustomer", id);
 	}
 	
 	//고객정보조회

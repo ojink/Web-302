@@ -9,28 +9,34 @@
 <body>
 <jsp:include page="/include/header.jsp" />
 
-<h3>고객정보</h3>
-
+<h3>신규회원등록</h3>
+<form method="post" action="insert.l3">
 <table border="1">
 <colgroup>
 	<col width="200px">
 	<col width="400px">
 </colgroup>
-<tr><th>고객명</th>
-	<td>${dto.name }</td>
+<tr><th>아이디</th>
+	<td><input type="text" name="p_id"></td>
 </tr>
-<tr><th>성별</th>
-	<td>${dto.gender }</td>
+<tr><th>비밀번호</th>
+	<td><input type="password" name="p_pw"></td>
+</tr>
+<tr><th>이름</th>
+	<td><input type="text" name="c_name"></td>
 </tr>
 <tr><th>이메일</th>
-	<td>${dto.email }</td>
+	<td><input type="text" name="c_email"></td>
 </tr>
 <tr><th>전화번호</th>
-	<td>${dto.phone }</td>
+	<td><input type="text" name="c_tel"></td>
 </tr>
 </table>
 
-<a href="modify.cu?id=${dto.id }">수정하기</a>
-<a href="delete.cu?id=${dto.id }">삭제하기</a>
+<button>저장하기</button>
+<button type="button" onclick="location='list.l3'">취소하기</button>
+
+</form>
+
 </body>
 </html>

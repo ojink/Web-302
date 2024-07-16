@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import level5.DeleteLevel5;
+import level5.InsertLevel5;
+import level5.ListLevel5;
 import level5.SearchLevel5;
+import level5.UpdateLevel5;
 
 @WebServlet("*.l5")
 public class L5Controller extends HttpServlet {
@@ -27,6 +31,40 @@ public class L5Controller extends HttpServlet {
 			//응답화면
 			view = "level5/search.jsp";
 		}
+		//제품코드 목록화면 요청
+		else if( uri.equals("/list.l5") ) {
+			//비지니스로직
+			new ListLevel5().exec(request, response);
+			
+			//응답화면
+			view = "level5/list.jsp";
+		}
+		//제품코드 수정화면 요청
+		else if( uri.equals("/modify.l5") ) {
+			//비지니스로직
+			new SearchLevel5().exec(request, response);
+			
+			//응답화면
+			view = "level5/modify.jsp";
+		}
+		//제품코드 삭제처리 요청
+		else if( uri.equals("/delete.l5") ) {
+			//비지니스로직
+			new DeleteLevel5().exec(request, response);
+			
+			//응답화면
+			view = "list.l5";
+			redirect = true;
+		}
+		//제품코드 등록화면 요청
+		else if( uri.equals("/register.l5") ) {
+			
+			//응답화면
+			view = "level5/register.jsp";
+		}
+		
+		
+		
 		
 		if( redirect )
 			response.sendRedirect(view);
@@ -46,6 +84,24 @@ public class L5Controller extends HttpServlet {
 			
 			//응답화면
 			view = "level5/result.jsp";
+		}
+		//제품코드에 대한 제조사명 변경저장 처리 요청
+		else if( uri.equals("/update.l5") ) {
+			//비지니스로직
+			new UpdateLevel5().exec(request, response);
+			
+			//응답화면
+			forward = false;
+			view = "search.l5?code=" + request.getParameter("code");
+		}
+		//제품코드 신규등록 처리 요청
+		else if( uri.equals("/insert.l5") ) {
+			//비지니스로직
+			new InsertLevel5().exec(request, response);
+			
+			//응답화면
+			forward = false;
+			view = "list.l5";
 		}
 		
 		if( forward )

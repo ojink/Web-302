@@ -9,34 +9,30 @@
 <body>
 <jsp:include page="/include/header.jsp" />
 
-<h3>제조사명 조회</h3>
+<h3>제품코드 수정</h3>
 
-<form method="post" action="search.l5">
+<form method="post" action="update.l5">
+<input type="hidden" name="code" value="${dto.code }">
 <table border="1">
 <colgroup>
 	<col width="200px">
 	<col width="400px">
 </colgroup>
-<tr><th colspan="2">제품코드(4) 입력</th></tr>
 <tr><th>제품코드</th>
-	<td><input type="text" name="code"></td>
+	<td>${dto.code }</td>
 </tr>
-<tr><th colspan="2"><button>확인</button></th>
+<tr><th>제조사명</th>
+	<td><input type="text" name="maker"  value="${dto.maker}" ></td>
 </tr>
 </table>
+<button>저장하기</button>
+<button type="button" onclick="location='list.l5' ">취소하기</button>
 </form>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" ></script>
-<script>
-<c:if test="${ ! empty param.code }">
-	$("[name=code]").val( "${param.code}" )
-	$("form").submit()
-	// $("button").trigger("click")
-</c:if>
-</script>
+
+
 
 </body>
 </html>
-
 
 
 

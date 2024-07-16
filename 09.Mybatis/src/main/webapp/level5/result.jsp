@@ -44,5 +44,12 @@
 
 </table>
 <a href="search.l5">제품코드 조회</a>
+<a href="list.l5">제품코드 목록</a>
 </body>
+
+
+
+
+
+
 </html>

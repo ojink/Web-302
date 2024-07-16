@@ -11,7 +11,7 @@ public class MybatisFactory {
 	private static SqlSession sessionHr;
 	private static SqlSession sessionHanul;
 	
-	public static SqlSession getHrInstance() {
+	public static SqlSession getInstance() {
 		if( sessionHr == null ) {
 			String resource = "mybatis/config.xml";
 			InputStream inputStream;

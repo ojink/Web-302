@@ -10,7 +10,7 @@ public class Level3DAO {
 	private SqlSession sql;
 	
 	public Level3DAO() {
-		sql = MybatisFactory.getHrInstance();
+		sql = MybatisFactory.getInstance();
 	}
 	
 	//CRUD
@@ -24,14 +24,14 @@ public class Level3DAO {
 	}
 	//회원정보조회
 	public Level3DTO getOneLevel3(String p_id) {
-		return null;
+		return sql.selectOne("level3.getOneLevel3", p_id);
 	}
 	//회원정보수정
 	public int updateLevel3(Level3DTO dto) {
-		return 0;
+		return sql.update("level3.updateLevel3", dto);
 	}
 	//회원정보삭제
 	public int deleteLevel3(String p_id) {
-		return 0;
+		return sql.delete("level3.deleteLevel3", p_id);
 	}
 }

@@ -10,7 +10,7 @@ import mybatis.MybatisFactory;
 public class CustomerDAO {
 	private SqlSession sql; //쿼리실행기능을 가진 클래스
 	public CustomerDAO() {
-		sql = MybatisFactory.getHrInstance();
+		sql = MybatisFactory.getInstance();
 	}
 	
 	//CRUD: Create, Read, Update, Delete

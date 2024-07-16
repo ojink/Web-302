@@ -5,8 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import book.model.BookDAO;
-import book.model.BookDTO;
 import common.Command;
 import level3.model.Level3DAO;
 import level3.model.Level3DTO;
@@ -20,9 +18,6 @@ public class ListCommand implements Command{
 		//회원목록조회 메소드 호출
 		List<Level3DTO> list = new Level3DAO().getListOfLevel3();
 		request.setAttribute("list", list);
-		
-		List<BookDTO> books = new BookDAO().getListOfBook();
-		request.setAttribute("books", books);
 		
 	}
 

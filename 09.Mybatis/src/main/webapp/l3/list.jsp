@@ -38,7 +38,7 @@
 
 <c:forEach items="${list }" var="dto">
 <tr><td>${dto.p_id }</td>
-	<td>${dto.c_name }</td>
+	<td><a href="info.l3?id=${dto.p_id}">${dto.c_name }</a></td>
 	<td>${dto.c_email }</td>
 	<td>${dto.c_tel }</td>
 </tr>

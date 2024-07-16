@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="level5">
+
+<!-- 제품코드조회 -->
+<select id="getOneCode" resultType="level5.model.Level5DTO">
+select * from product_code
+where code = #{code}
+</select>
+
+</mapper>

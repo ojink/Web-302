@@ -4,4 +4,5 @@
 <div><a href="<c:url value='/' />">홈으로</a></div>    
 <div><a href="<c:url value='/list.cu' />">고객관리</a></div>    
 <div><a href="<c:url value='/list.l3' />">SW개발 L3</a></div>    
+<div><a href="<c:url value='/search.l5' />">SW개발 L5</a></div>    
 <hr>
